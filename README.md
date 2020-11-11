@@ -153,3 +153,22 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ## Documentation
 
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+
+Temporary endpoint documentation:
+| URL  | Method | Description | Required properties | Example request body | Example data |
+| --- | --- | --- | --- | --- | --- |
+| /profiles/:id | Get | Profile | N/A | N/A | `{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}` |
+| /profiles | GET | Profile list | N/A | N/A | `[{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}, (more objects)]`|
+| /pinned | GET | Pinned list | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
+| /pinned | POST | Save pinned | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of newly inserted destination |
+| /flagged | GET | Flagged list | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
+| /flagged | POST | Save flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }` | if successful, id of newly inserted destination |
+| /events | GET | Travel itinerary | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
+| /events | POST | Save event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of newly inserted event |
+
+(flagged and pinned endpoints function the same, just different tables)
+
+All fields are strings
+
+@ me on slack for any questions or clarifications
+
