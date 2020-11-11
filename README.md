@@ -163,8 +163,8 @@ Temporary endpoint documentation:
 | /pinned | POST | Save pinned | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of newly inserted destination |
 | /flagged | GET | Flagged list | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
 | /flagged | POST | Save flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }` | if successful, id of newly inserted destination |
-| /events | GET | Travel itinerary | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 7, "user": "21fhasdh1svaskse", "destination_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
-| /events | POST | Save event | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of newly inserted event |
+| /events | GET | Travel itinerary | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
+| /events | POST | Save event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of newly inserted event |
 
 (flagged and pinned endpoints function the same, just different tables)
 
