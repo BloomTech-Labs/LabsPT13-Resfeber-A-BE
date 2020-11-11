@@ -9,6 +9,8 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const jsdocConfig = require('../config/jsdoc');
 const dotenv = require('dotenv');
 const config_result = dotenv.config();
+const authRequired = require('./middleware/authRequired');
+
 if (process.env.NODE_ENV != 'production' && config_result.error) {
   throw config_result.error;
 }
@@ -23,6 +25,7 @@ const indexRouter = require('./index/indexRouter');
 const profileRouter = require('./profile/profileRouter');
 const pinnedRouter = require('./pinned/pinnedRouter');
 const flaggedRouter = require('./flagged/flaggedRouter');
+const eventsRouter = require('./events/eventsRouter');
 const dsRouter = require('./dsService/dsRouter');
 
 const app = express();
@@ -46,18 +49,16 @@ app.use(
   })
 );
 app.use(logger('dev'));
-/* app.use((req, res, next) => {
-  console.log(req.session)
-  next()
-}) */
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('*', authRequired);
 
 // application routes
 app.use('/', indexRouter);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use('/pinned', pinnedRouter);
 app.use('/flagged', flaggedRouter);
+app.use('/events', eventsRouter);
 app.use('/data', dsRouter);
 
 // catch 404 and forward to error handler

@@ -12,16 +12,19 @@ exports.up = (knex) => {
       table.increments();
       table.string('user').references("profiles.id").notNullable();
       table.string('destination_name').notNullable()
+      table.unique(['user', `destination_name`])
     })
     .createTable('flagged_destinations', function (table) {
       table.increments();
       table.string('user').references("profiles.id").notNullable();
       table.string('destination_name').notNullable()
+      table.unique(['user', `destination_name`])
     })
     .createTable('events', function (table) {
       table.increments();
       table.string('user').references("profiles.id").notNullable();
       table.string('event_name').notNullable()
+      table.unique(['user', `event_name`])
       table.datetime('date')
       table.string("notes")
     })
