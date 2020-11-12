@@ -1,5 +1,4 @@
 const express = require('express');
-//const authRequired = require('../middleware/authRequired');
 const Flagged = require('./flaggedModel');
 const router = express.Router();
 
