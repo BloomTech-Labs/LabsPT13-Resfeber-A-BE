@@ -7,9 +7,33 @@ exports.up = (knex) => {
       table.string('name');
       table.string('avatarUrl');
       table.timestamps(true, true);
-    });
+    })
+    .createTable('pinned_destinations', function (table) {
+      table.increments();
+      table.string('user').references("profiles.id").notNullable();
+      table.string('destination_name').notNullable()
+      table.unique(['user', `destination_name`])
+    })
+    .createTable('flagged_destinations', function (table) {
+      table.increments();
+      table.string('user').references("profiles.id").notNullable();
+      table.string('destination_name').notNullable()
+      table.unique(['user', `destination_name`])
+    })
+    .createTable('events', function (table) {
+      table.increments();
+      table.string('user').references("profiles.id").notNullable();
+      table.string('event_name').notNullable()
+      table.unique(['user', `event_name`])
+      table.datetime('date')
+      table.string("notes")
+    })
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('profiles');
+  return knex.schema
+  .dropTableIfExists('pinned_destinations')
+  .dropTableIfExists('flagged_destinations')
+  .dropTableIfExists('events')
+  .dropTableIfExists('profiles');
 };
