@@ -1,5 +1,4 @@
 const express = require('express');
-//const authRequired = require('../middleware/authRequired');
 const Pinned = require('./pinnedModel');
 const router = express.Router();
 
