@@ -43,20 +43,8 @@ app.use(
 
 app.use(helmet());
 app.use(express.json());
+app.use(cors());
 app.options('*', cors());
-app.use(
-  cors({
-    origin: [/localhost/, 'http://localhost:3000'],
-  })
-);
-app.use('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -64,10 +52,10 @@ app.use('*', authRequired);
 
 // application routes
 app.use('/', indexRouter);
-app.use(cors(), ['/profile', '/profiles'], profileRouter);
-app.use(cors(), '/pinned', pinnedRouter);
-app.use(cors(), '/flagged', flaggedRouter);
-app.use(cors(), '/events', eventsRouter);
+app.use(['/profile', '/profiles'], profileRouter);
+app.use('/pinned', pinnedRouter);
+app.use('/flagged', flaggedRouter);
+app.use('/events', eventsRouter);
 app.use('/data', dsRouter);
 
 // catch 404 and forward to error handler
