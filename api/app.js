@@ -64,10 +64,10 @@ app.use('*', authRequired);
 
 // application routes
 app.use('/', indexRouter);
-app.use(['/profile', '/profiles'], profileRouter);
-app.use('/pinned', pinnedRouter);
-app.use('/flagged', flaggedRouter);
-app.use('/events', eventsRouter);
+app.use(cors(), ['/profile', '/profiles'], profileRouter);
+app.use(cors(), '/pinned', pinnedRouter);
+app.use(cors(), '/flagged', flaggedRouter);
+app.use(cors(), '/events', eventsRouter);
 app.use('/data', dsRouter);
 
 // catch 404 and forward to error handler
