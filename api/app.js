@@ -46,12 +46,12 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('*', authRequired);
 app.use(cors());
 app.options('*', cors());
 
 // application routes
 app.use('/', indexRouter);
+app.use('*', authRequired);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use('/pinned', pinnedRouter);
 app.use('/flagged', flaggedRouter);
