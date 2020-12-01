@@ -160,15 +160,13 @@ Temporary endpoint documentation:
 | /profiles/id | GET | Profile | N/A | N/A | `{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}` |
 | /profiles | GET | Profile list | N/A | N/A | `[{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}, (more objects)]`|
 | /pinned/id | GET | Pinned list | N/A | N/A | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
-| /pinned | POST | Save pinned | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of newly inserted destination |
-| /flagged/id | GET | Flagged list | N/A | N/A | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
-| /flagged| POST | Save flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }` | if successful, id of newly inserted destination |
+| /pinned | POST | Save pinned | user `id`, `destination_name`, `teleport_id` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California", "teleport_id": "2139875183" }` | if successful, table id of newly inserted destination |
+| /pinned | DELETE | Remove pinned | user `id`, `teleport_id` | `{ "id": "21fhasdh1svaskse", "teleport_id": "2139875183" }` | if successful, table id of deleted destination |
 | /events/id | GET | Travel itinerary | N/A | N/A | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
-| /events | POST | Save event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of newly inserted event |
-
-(flagged and pinned endpoints function the same, just different tables)
-
-All fields are strings
+| /events | POST | Save event | user `id`, `event_name`, (other fields) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, table id of newly inserted event |
+| /events | PUT | Update event | user `id`, `event_name`, (fields you want to change) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon", "flagged": true}` | if successful, table id of updated event |
+| /events | DELETE | Remove event | user `id`, `event_name`, (other fields) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, table id of deleted event |
+All fields are strings except flagged
 
 @ me on slack for any questions or clarifications
 
