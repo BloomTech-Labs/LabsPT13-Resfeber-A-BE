@@ -2,16 +2,11 @@ const express = require('express');
 const Events = require('./eventsModel');
 const router = express.Router();
 
-router.use('/', function (req, res, next) {
-  if (!req.body.id) {
-    res.status(401).json({ message: 'missing id field in request body' });
-  } else {
-    next();
+router.get('/:id', function (req, res) {
+  if (!req.params.id) {
+    res.status(400).json({ message: 'missing id field in request body' });
   }
-});
-
-router.get('/', function (req, res) {
-  const id = req.body.id;
+  const id = req.params.id;
   Events.getEvents(id)
     .then((events) => {
       res.status(200).json(events);
@@ -20,6 +15,14 @@ router.get('/', function (req, res) {
       console.log(err);
       res.status(500).json({ message: err.message });
     });
+});
+
+router.use('/', function (req, res, next) {
+  if (!req.body.id) {
+    res.status(401).json({ message: 'missing id field in request body' });
+  } else {
+    next();
+  }
 });
 
 router.post('/', function (req, res) {

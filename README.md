@@ -155,20 +155,16 @@ Remember that this project is licensed under the MIT license, and by submitting 
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
 
 Temporary endpoint documentation:
-| URL  | Method | Description | Required properties | Example request body | Example data |
+| URL  | Method | Description | Required body parameters | Example request body | Example data |
 | --- | --- | --- | --- | --- | --- |
-| /profiles/:id | Get | Profile | N/A | N/A | `{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}` |
+| /profiles/id | GET | Profile | N/A | N/A | `{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}` |
 | /profiles | GET | Profile list | N/A | N/A | `[{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}, (more objects)]`|
-| /pinned | GET | Pinned list | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
+| /pinned/id | GET | Pinned list | N/A | N/A | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
 | /pinned | POST | Save pinned | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of newly inserted destination |
-| /pinned | DELETE | Remove pinned | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of removed row |
-| /flagged | GET | Flagged list | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
-| /flagged | POST | Save flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }` | if successful, id of newly inserted destination |
-| /pinned | DELETE | Remove flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California" }` | if successful, id of removed row |
-| /events | GET | Travel itinerary | user `id` | `{ "id": "21fhasdh1svaskse" }` | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
+| /flagged/id | GET | Flagged list | N/A | N/A | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
+| /flagged| POST | Save flagged | user `id`, `destination_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }` | if successful, id of newly inserted destination |
+| /events/id | GET | Travel itinerary | N/A | N/A | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
 | /events | POST | Save event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of newly inserted event |
-| /events | PUT | Update event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon", "date": "2017-01-30 16:49:19" }` | if successful, id of updated row |
-| /events | DELETE | Remove event | user `id`, `event_name` | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, id of removed event |
 
 (flagged and pinned endpoints function the same, just different tables)
 
