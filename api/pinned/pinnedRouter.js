@@ -20,6 +20,10 @@ router.get('/:id', function (req, res) {
 router.use('/', function (req, res, next) {
   if (!req.body.id) {
     res.status(400).json({ message: 'missing id field in request body' });
+  } else if (!req.body.teleport_id) {
+    res
+      .status(400)
+      .json({ message: 'missing teleport_id field in request body' });
   } else {
     next();
   }
@@ -31,9 +35,7 @@ router.post('/', function (req, res) {
       .status(401)
       .json({ message: 'missing destination_name field in request body' });
   } else {
-    const id = req.body.id;
-    const name = req.body.destination_name;
-    Pinned.addPinned(id, name)
+    Pinned.addPinned(req.body)
       .then((pinned) => {
         res.status(200).json(pinned);
       })
@@ -45,22 +47,16 @@ router.post('/', function (req, res) {
 });
 
 router.delete('/', function (req, res) {
-  if (!req.body.destination_name) {
-    res
-      .status(401)
-      .json({ message: 'missing destination_name field in request body' });
-  } else {
-    const id = req.body.id;
-    const name = req.body.destination_name;
-    Pinned.removePinned(id, name)
-      .then((response) => {
-        res.status(200).json(response);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: err.message });
-      });
-  }
+  const id = req.body.id;
+  const teleport_id = req.body.teleport_id;
+  Pinned.removePinned(id, teleport_id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: err.message });
+    });
 });
 
 module.exports = router;

@@ -16,7 +16,6 @@ if (process.env.NODE_ENV != 'production' && config_result.error) {
 const indexRouter = require('./index/indexRouter');
 const profileRouter = require('./profile/profileRouter');
 const pinnedRouter = require('./pinned/pinnedRouter');
-const flaggedRouter = require('./flagged/flaggedRouter');
 const eventsRouter = require('./events/eventsRouter');
 const dsRouter = require('./dsService/dsRouter');
 
@@ -41,7 +40,6 @@ app.use('/', indexRouter);
 app.use('*', authRequired);
 app.use(['/profile', '/profiles'], profileRouter);
 app.use('/pinned', pinnedRouter);
-app.use('/flagged', flaggedRouter);
 app.use('/events', eventsRouter);
 app.use('/data', dsRouter);
 
