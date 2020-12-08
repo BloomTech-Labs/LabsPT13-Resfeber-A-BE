@@ -155,18 +155,17 @@ Remember that this project is licensed under the MIT license, and by submitting 
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
 
 Temporary endpoint documentation:
-| URL  | Method | Description | Required body parameters | Example request body | Example data |
+| URL  | Method | Description | Required body parameters | Example request body |
 | --- | --- | --- | --- | --- | --- |
-| /profiles/id | GET | Profile | N/A | N/A | `{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}` |
-| /profiles | GET | Profile list | N/A | N/A | `[{ "id": "21fhasdh1svaskse", "email": "blah@gmail.com", "name": "Mr Blah", "avatarUrl": "blah.com/blah.png"}, (more objects)]`|
-| /pinned/id | GET | Pinned list | N/A | N/A | `[{ "id": 3, "user": "21fhasdh1svaskse", "destination_name": "Los Angeles, California" }, (more objects)]` |
-| /pinned | POST | Save pinned | user `id`, `destination_name`, `teleport_id` | `{ "id": "21fhasdh1svaskse", "destination_name": "San Francisco, California", "teleport_id": "2139875183" }` | if successful, table id of newly inserted destination |
-| /pinned | DELETE | Remove pinned | user `id`, `teleport_id` | `{ "id": "21fhasdh1svaskse", "teleport_id": "2139875183" }` | if successful, table id of deleted destination |
-| /events/id | GET | Travel itinerary | N/A | N/A | `[{ "id": 7, "user": "21fhasdh1svaskse", "event_name": "Grand Canyon", "event_notes": "blah blah", (more info as this feature is fleshed out in later releases}, (more objects)]` |
-| /events | POST | Save event | user `id`, `event_name`, (other fields) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, table id of newly inserted event |
-| /events | PUT | Update event | user `id`, `event_name`, (fields you want to change) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon", "flagged": true}` | if successful, table id of updated event |
-| /events | DELETE | Remove event | user `id`, `event_name`, (other fields) | `{ "id": "21fhasdh1svaskse", "destination_name": "Grand Canyon" }` | if successful, table id of deleted event |
-All fields are strings except flagged
-
+| /trips/:user_id  | GET | Returns trips for given user_id | N/A | N/A |
+| /trips/:user_id/all  | GET | Returns trips and nested trip items for given user_id | N/A | N/A |
+| /trips/:user_id/:trip_id  | GET | Returns trip items for given user_id and trip_id | N/A | N/A |
+| /trips | POST | Creates new trip with parameters in request body | `user_id`, `trip_name` | `{ "user_id": "2fnas82", "trip_name": "Beach Trip" }` |
+| /trips | PUT | Updates trip with parameters in request body, given `trip_id` | `trip_id` | `{ "trip_id": 4, "trip_name": "SUPER Beach Trip" }` |
+| /trips | DELETE | Deletes trip with given `trip_id` | `trip_id` | `{ "trip_id": 4 }` |
+| /items/:user_id  | GET | Returns trip items for given user_id | N/A | N/A |
+| /items | POST | Creates new trip item with parameters in request body | `user_id`, `item_name`, `trip_id` | `{ "user_id": "2fnas82", "item_name": "Hotel", "trip_id": 4 }` |
+| /items | UPDATE | Updates item with parameters in request body | `item_id` | `{ "item_id": 4, "notes": "room number is 312", "date": "2020-12-29 15:0:0"}` |
+| /items | DELETE | Deletes item with given `item_id` | `item_id` | `{ "item_id": 4 }` |
 @ me on slack for any questions or clarifications
 
