@@ -15,8 +15,8 @@ if (process.env.NODE_ENV != 'production' && config_result.error) {
 //###[  Routers ]###
 const indexRouter = require('./index/indexRouter');
 const profileRouter = require('./profile/profileRouter');
-const pinnedRouter = require('./pinned/pinnedRouter');
-const eventsRouter = require('./events/eventsRouter');
+const tripsRouter = require('./trips/tripsRouter');
+const itemsRouter = require('./items/itemsRouter');
 const dsRouter = require('./dsService/dsRouter');
 
 const app = express();
@@ -39,8 +39,8 @@ app.options('*', cors());
 app.use('/', indexRouter);
 app.use('*', authRequired);
 app.use(['/profile', '/profiles'], profileRouter);
-app.use('/pinned', pinnedRouter);
-app.use('/events', eventsRouter);
+app.use('/trips', tripsRouter);
+app.use('/items', itemsRouter);
 app.use('/data', dsRouter);
 
 // catch 404 and forward to error handler
