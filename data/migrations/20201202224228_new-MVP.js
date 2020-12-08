@@ -32,6 +32,5 @@ exports.down = function (knex) {
     })
     .createTable('pinned_destinations', function (table) {
       table.increments();
-    })
-    
+    });
 };
