@@ -25,11 +25,13 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
+    .dropTableIfExists('trip_items')
+    .dropTableIfExists('trips')
     .createTable('events', function (table) {
       table.increments();
     })
     .createTable('pinned_destinations', function (table) {
       table.increments();
     })
-    .dropTableIfExists('trips');
+    
 };
