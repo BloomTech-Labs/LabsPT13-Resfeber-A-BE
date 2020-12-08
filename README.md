@@ -155,8 +155,9 @@ Remember that this project is licensed under the MIT license, and by submitting 
 See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
 
 Temporary endpoint documentation:
+
 | URL  | Method | Description | Required body parameters | Example request body |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | /trips/:user_id  | GET | Returns trips for given user_id | N/A | N/A |
 | /trips/:user_id/all  | GET | Returns trips and nested trip items for given user_id | N/A | N/A |
 | /trips/:user_id/:trip_id  | GET | Returns trip items for given user_id and trip_id | N/A | N/A |
@@ -167,5 +168,6 @@ Temporary endpoint documentation:
 | /items | POST | Creates new trip item with parameters in request body | `user_id`, `item_name`, `trip_id` | `{ "user_id": "2fnas82", "item_name": "Hotel", "trip_id": 4 }` |
 | /items | UPDATE | Updates item with parameters in request body | `item_id` | `{ "item_id": 4, "notes": "room number is 312", "date": "2020-12-29 15:0:0"}` |
 | /items | DELETE | Deletes item with given `item_id` | `item_id` | `{ "item_id": 4 }` |
+
 @ me on slack for any questions or clarifications
 
