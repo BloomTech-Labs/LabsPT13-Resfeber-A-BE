@@ -36,7 +36,7 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://main.d3se6rmuhgrnx0.amplifyapp.com/',
+      'https://main.d3se6rmuhgrnx0.amplifyapp.com',
     ],
     credentials: true,
   })
