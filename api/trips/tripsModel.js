@@ -8,10 +8,10 @@ const getAll = async (userId) => {
   const trips = await db('trips').where({ user_id: userId });
   const items = await db('trip_items').where({ user_id: userId });
   trips.forEach((trip) => {
-    trip.events = [];
+    trip.items = [];
     items.forEach((item) => {
       if (trip.id == item.trip_id) {
-        trip.events.push(item);
+        trip.items.push(item);
         //delete item - this would provide optimization but commit linter doesn't like it so..
       }
     });
