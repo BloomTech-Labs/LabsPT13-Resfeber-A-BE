@@ -32,7 +32,15 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'https://main.d3se6rmuhgrnx0.amplifyapp.com',
+    ],
+    credentials: true,
+  })
+);
 app.options('*', cors());
 
 // application routes

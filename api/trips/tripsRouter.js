@@ -56,9 +56,24 @@ router.post('/', function (req, res) {
     res.status(400).json({ message: 'request body should have user_id field' });
   }
   const trip = req.body;
+  let trip_items;
+  if (trip.items) {
+    trip_items = req.body.items;
+    delete trip.items;
+  }
   trips
     .addTrip(trip)
     .then((response) => {
+      if (trip_items.length > 0) {
+        // if there are nested trip items
+        trip_items.forEach((item) => {
+          item.user_id = response[0].user_id;
+          item.trip_id = response[0].id;
+          items.addItem(item).catch((error) => {
+            console.log(error);
+          });
+        });
+      }
       res.status(200).json(response);
     })
     .catch((err) => {
